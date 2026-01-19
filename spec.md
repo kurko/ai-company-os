@@ -42,13 +42,16 @@ When starting a new project idea, these agents work together to:
 - Review and iterate on quality
 
 ### Core Flow
-[ALEX: To be clear, this is the core flow, and I think it should be a skill. Actually, this is more like a question because I'm creating the agents, which are like different roles. But when I say that, hey, now it's time for us to come up with a vision, then we should focus on that vision.
 
-So actually, maybe we should have one skill for a vision and another skill for brainstorming, which has a dependency on vision. We can have those different skills because, for example, if a product manager is coming up with a vision for a particular feature or a module in a product, they should also use the skill for creating a vision, but it would just be scoped to that level. If a CEO is writing a vision, then it's sort of the same, kind of the same questions to be asked, which are more abstract but scoped at a different level.
+The core flow is managed through a meta-skill (`product-development-flow.md`) that orchestrates the sequence. Each stage has its own dedicated skill:
 
-But when we create a PRD, the SKU should always check. The PRD skill should check if we have a particular vision, and it should search for dependencies. So I think all of these skills should have dependencies, and when we trigger those skills, it should raise questions like where are the dependencies. If they're not present and it's on purpose, that's fine.
+- `vision.md` - Creates vision documents (scalable from feature-level to company-level)
+- `brainstorm.md` - Facilitates brainstorming sessions (depends on vision)
+- `prd.md` - Creates PRDs (depends on vision, checks for dependencies)
+- `user-stories.md` - Breaks down PRD into user stories
+- `backlog.md` - Creates actionable task backlog
 
-It looks like we should have one SKU per each one of these actions, and then we should have one skill that describes this flow. But because I also, yeah. So I don't know if we should have, it looks like we should have one skill per each one of these actions, and then we should have one skill that describes this flow, right? And so this meta skill would describe the flow and say, hey, we have skills for each one of these, which would trigger the agents to then load those skills.]
+Each skill declares its dependencies. When triggered, skills verify their dependencies exist (e.g., PRD skill checks for vision). If dependencies are missing intentionally, the agent can proceed after acknowledging this.
 
 ```
 Vision/North Star
@@ -86,89 +89,95 @@ Vision/North Star
 
 ### Tier Taxonomy
 
-#### Tier 0: Axioms, Directives, Protocol Zero
+#### Tier 0: Decision Principles
 
-[ALEX: I added this tier that drives everything else. This should probably be part of CLAUDE.md]
+A set of directives driving the whole organization. These principles are also documented in CLAUDE.md and referenced by the `decision-making.md` skill.
 
-A set of directives driving the whole organization.
+**Foundations**
+- **First Principles**: Decompose to fundamentals before building. Avoids reasoning by analogy.
+- **Empiricism**: Data-driven decisions (reference: Taleb)
+- **Falsification**: Seek to disprove, not confirm (reference: Popper)
 
-- First Principles: Decompose to fundamentals before building. Avoids reasoning by analogy.
-- 
-- Empiricism: data-driven. We should reference Taleb's books so the AI can trigger neurons without excessive token usage.
-- Pareto principle: 80% value with 20% effort.
-- Reversibility: Prefer "two-way door" decisions (Bezos). Can you undo it? If not, requires more analysis.
-- Second Order: Consequences of consequences. "And then what happens?", like a chess game, we need to think moves ahead and for every tree depth, we consider, "What's the evaluation?", and then we compare those pathways.
-- Opportunity Cost: What are you not doing by choosing this?
-- Margin of Safety: Leave room for error in estimates.
-- Via Negativa / Inversion / Premortem: Munger, Gary Klein. Karl Popper 
-- Second-order effects
-- Antifragile
+**Prioritization**
+- **Pareto Principle**: 80% value with 20% effort
+- **Opportunity Cost**: What are you not doing by choosing this?
 
-A skill "decision-making" includes all of these. It is referenced from CLAUDE.md.
+**Risk Assessment**
+- **Reversibility**: Prefer "two-way door" decisions (Bezos). One-way doors require more analysis.
+- **Via Negativa / Inversion / Premortem**: What would make this fail? (Munger, Gary Klein)
+- **Margin of Safety**: Leave room for error in estimates
+- **Second Order**: Consequences of consequences - evaluate the decision tree
 
-[ALEX: I asked Claude desktop to organize this for CLAUDE.md]
-
-```
-# Decision principles
-
-All recommendations and decisions pass through these filters. See `/skills/decision-making/SKILL.md` for detailed application.
-
-## Foundations
-- First Principles: decompose to fundamentals before building
-- Empiricism: data over opinions (Taleb)
-- Falsification: seek to disprove, not confirm (Popper)
-
-## Prioritization
-- Pareto: 80% of value from 20% of effort
-- Opportunity Cost: what are you not doing by choosing this?
-
-## Risk assessment
-- Reversibility: two-way door decisions move fast, one-way doors require analysis (Bezos)
-- Via Negativa: what would make this fail? (Munger, Klein)
-- Margin of Safety: assume estimates are wrong
-- Second Order: consequences of consequences, evaluate the tree
-
-## Resilience
-- Antifragility: prefer options that strengthen under stress (Taleb)
-```
+**Resilience**
+- **Antifragility**: Prefer options that strengthen under stress (Taleb)
 
 #### Tier 1: Board of Directors
-- Real famous people (Jony Ive, Alex Hormozi suggested) [ALEX: Yeah, one question I have is, should these be part of the board of directors or should these be consultants, right? Because maybe it makes sense for the board of directors to have different styles, and then they call consultants for second opinions. I think it would be easier to have those as consultants and separate than as part of the board of directors. Then, as part of the board of directors, which means we would have agents for the board of directors.]
+
+The board provides strategic oversight through agents with different thinking styles. Board members are NOT real people - they represent diverse perspectives for better decision-making.
+
 - High-level strategic input
 - Invoked for major decisions
-- Self-coordinating with a **Chairman**
-- Lives in: `agents/personas/board/` [ALEX: This needs to be agents/board-chairman.md because claude code can't load subdirectories]
+- Self-coordinating with a **Chairman** (uses `facilitator.md` skill)
+- Lives in: `agents/` with naming pattern `board-{style}.md`
+
+**Board Agent Examples:**
+- `board-chairman.md` - Coordinates board discussions
+- `board-conservative.md` - Risk-averse perspective
+- `board-visionary.md` - Growth-oriented perspective
 
 #### Tier 2: Consultants
-- Real people triggered for specific expertise
-- Examples: Ryan Singer (product/shaping), DHH (technical)
-- Domain experts called on when expertise is needed
-    - [ALEX: I want you to research online who are the managing partners at Y Combinator. Then, we're going to use sub-agents for each one of those people, and these sub-agents are going to research what are the things that those people said in videos, et cetera. ]
+
+Real people triggered for specific expertise. These are based on actual domain experts whose public teachings inform their behavior.
+
+- Examples: Ryan Singer (product/shaping), DHH (technical), Jony Ive (design)
+- Domain experts called when their expertise is needed
 - Not always present - triggered when relevant
-- Lives in: `agents/personas/consultants/` [ALEX: This needs to be agents/consultant-john-doe.md because claude code can't load subdirectories]
+- Lives in: `agents/` with naming pattern `consultant-{name}.md`
+
+**Consultant Agent Examples:**
+- `consultant-ryan-singer.md`
+- `consultant-dhh.md`
+- `consultant-jony-ive.md`
+- `consultant-devils-advocate.md` - Unbiased external challenge (not attached to any particular viewpoint)
 
 #### Tier 3: Company Roles
-- Defined positions: CTO, CEO, CMO, engineers, managers
-- NOT based on specific real people
-- Behavioral specifications we define
-- Operational continuity
-- Lives in: `agents/company/` [ALEX: same as above; let's use agents/role-{department}-{role}-{level}.md; level is optional]
-[ALEX: I want to have departments here. I want to have a product department. I want to separate the departments instead of just having everyone in the same folder because in the future, when we're at the point of doing something related to, say, finance, then we're going to have to work harder on creating the finance agents, which are not a priority right now. But if we already have the directories per department, I think it's going to be easier to reason about them. Also, in the future, we can get into this directory with cloud code and work on a particular department and have its own Claude MD and that kind of stuff. ]
+
+Defined positions by department. NOT based on specific real people - behavioral specifications we define for operational continuity.
+
+Lives in: `agents/` with naming pattern `role-{dept}-{role}.md` (level suffix optional: `role-{dept}-{role}-{level}.md`)
+
+**Departments:**
+- `exec` - Executive (CEO, COO)
+- `eng` - Engineering
+- `prod` - Product
+- `mkt` - Marketing
+- `fin` - Finance
+- `legal` - Legal
+- `ops` - Operations
+- `hr` - Human Resources
+
+**Company Role Examples:**
+- `role-exec-ceo.md`
+- `role-eng-cto.md`
+- `role-eng-manager.md`
+- `role-eng-senior.md`
+- `role-prod-director.md`
+- `role-prod-manager.md`
+- `role-mkt-cmo.md`
 
 #### Special Roles
 
-[ALEX: we need to revisit this; what are these roles, agents? skills?]
-
-- **Devil's Advocate** - Generic contrarian role, constructive not obstructionist
-    - [ALEX: should this be a nameless consultant?]
-- **File Reader** - Context window management agent
-- **Facilitator** - Coordinates multi-agent deliberations
-- **Orchestrator** - Handles workflow and triggering
+- **Facilitator** - A SKILL (`facilitator.md`) for coordinating multi-agent discussions. Used by `board-chairman.md` and hub agents.
+- **Devil's Advocate** - BOTH an agent AND behavior:
+  - Agent: `consultant-devils-advocate.md` - Unbiased external challenge, not attached to any viewpoint
+  - Behavior: Baked into `thinking.md` skill - encourages all agents to play devil's advocate during deliberation
+- **File Reader** - A SKILL for context window management
+- **Orchestrator** - A SKILL for handling workflow and triggering
 
 
 ### Agent Instruction Format
 
-For Company Roles: [Let's add a section "Favorite books"]
+For Company Roles:
 
 ```markdown
 ---
@@ -204,6 +213,10 @@ model: opus  # optional, defaults to most capable
 - Every delegation includes INTENT
 - "No order is complete without an intent"
 
+## Favorite Books
+- [books from Company Library that inform this role]
+- [principles distilled from these books]
+
 ## Skills Referenced
 - memory
 - research (if applicable)
@@ -214,7 +227,7 @@ model: opus  # optional, defaults to most capable
 - [distilled book principles relevant to this role]
 ```
 
-For Real People (Board/Consultants):
+For Real People (Consultants):
 
 ```markdown
 ---
@@ -227,13 +240,14 @@ description: "Short trigger description"
 - [brief background]
 - Known for: [key works, methodologies]
 
-## When to Invoke
-- [specific situations where their expertise applies] [ALEX: is this worth it? It's not read unless "description" in frontmatter say it should be invoked, right? So I'd focus on that.]
-
 ## Key Principles
-- [extracted from their public teachings] [Alex: the skill for creating agents / skill I pointed out should instruct subagents to go do the research on people.]
+- [extracted from their public teachings]
 - [specific questions they would ask]
 - [frameworks they use]
+
+## Favorite Books
+- [their own books]
+- [books they recommend or reference]
 
 ## Sources
 - [books, talks, articles]
@@ -278,71 +292,82 @@ Skills encode more than "how to do X":
 | Skill | Purpose |
 |-------|---------|
 | `memory.md` | How to use working memory, meeting notes, session recaps |
-| `research.md` | Dual-verification research pattern with sub-agents [ALEX: This one interests me because it can serve to do research on actual project work, like a logo, but it can also help us create agents, consultants, and all that kind of stuff. So I want to invest in this quite a lot. ] |
-| `thinking.md` | When/how to spawn thinking sub-agents for deliberation |
-| `tldr.md` | Every document needs a TLDR; should be super short [ALEX: actually this should be baked into a writing-documents.md skill which is much more general] |
-| `document-structure.md` | Standard doc format: paragraphs, open questions, guardrails |
+| `research.md` | Dual-mode: project research (competitors, market) AND meta research (for agent/consultant creation) |
+| `thinking.md` | Adapted from balls-mode for complex problem decomposition. Includes devil's advocate behavior - encourages agents to challenge their own assumptions |
+| `writing-documents.md` | General document standards including TLDR requirement, structure, open questions |
+| `decision-making.md` | References Tier 0 principles for all decision-making |
 | `prd.md` | How to create PRDs, dependencies on vision |
 | `code-review.md` | Review standards, trigger conditions |
 | `brainstorm.md` | Brainstorming process and facilitation |
 | `vision.md` | Vision document requirements and format |
+| `user-stories.md` | Breaking PRDs into user stories |
+| `backlog.md` | Creating actionable task backlogs |
 | `project-kickoff.md` | Discovery interview process |
-
-
-[ALEX: More skills → one that writes and improves skills, axioms, agents, commands. Among other things, I want it specifically to ensure books are referenced in skills / agents so the AI can trigger neurons associated with the practices in that book without excessive token usage of writing down the book (alongside the book, there's always a small excerpt or example for the AI.]
-
-[ALEX: I want to have a skill that is a version of this one → https://github.com/gbasin/balls-mode/blob/main/plugins/balls-mode/skills/balls/SKILL.md but without that name. It should be a skill so agents can use it automatically and it should only be used for complex problems (the frontmatter description should include that directive; you can read the skill to understand why, it shouldn't be used for simple problems)]
+| `product-development-flow.md` | Meta-skill orchestrating vision -> brainstorm -> PRD -> stories -> backlog |
+| `create-agent.md` | Creates and improves agents/skills, ensures book references, uses research for people |
+| `facilitator.md` | Skill for coordinating multi-agent discussions |
+| `communication.md` | Abstracts project management tools (Linear/Asana/Jira) |
 
 ---
 
 ## 4. Directory Structure
 
-[ALEX: we need to revisit this]
+Uses a flat structure for Claude Code compatibility (cannot load subdirectories). Locations are defined in skills, not hardcoded in agents, ensuring portability.
+
 ```
 vision-to-product/
 |
 +-- agents/                          # PORTABLE - copy to new companies
-|   +-- personas/                    # Real people (can delete this folder if needed)
-|   |   +-- board/
-|   |   |   +-- jony-ive.md
-|   |   |   +-- alex-hormozi.md
-|   |   |   +-- chairman.md          # Coordinates board discussions
-|   |   +-- consultants/
-|   |       +-- ryan-singer.md
-|   |       +-- dhh.md
-|   |
-|   +-- company/                     # Company role definitions
-|   |   +-- ceo.md
-|   |   +-- cto.md
-|   |   +-- cmo.md
-|   |   +-- director-product-strategy.md
-|   |   +-- product-manager.md
-|   |   +-- engineering-manager.md
-|   |   +-- engineer.md
-|   |   +-- devils-advocate.md
-|   |
-|   +-- system/                      # System-level agents
-|       +-- orchestrator.md
-|       +-- facilitator.md
-|       +-- file-reader.md
+|   |                                # Flat structure with naming conventions:
+|   +-- board-chairman.md            # Board: board-{style}.md
+|   +-- board-conservative.md
+|   +-- board-visionary.md
+|   +-- consultant-ryan-singer.md    # Consultants: consultant-{name}.md
+|   +-- consultant-dhh.md
+|   +-- consultant-jony-ive.md
+|   +-- consultant-devils-advocate.md
+|   +-- role-exec-ceo.md             # Company roles: role-{dept}-{role}.md
+|   +-- role-eng-cto.md
+|   +-- role-eng-manager.md
+|   +-- role-eng-senior.md
+|   +-- role-prod-director.md
+|   +-- role-prod-manager.md
+|   +-- role-mkt-cmo.md
+|   +-- hub-consultancy.md           # Hub agent for spawning consultants
 |
 +-- skills/                          # PORTABLE - copy to new companies
 |   +-- memory.md
 |   +-- research.md
 |   +-- thinking.md
-|   +-- tldr.md
-|   +-- document-structure.md
+|   +-- writing-documents.md
+|   +-- decision-making.md
 |   +-- prd.md
 |   +-- code-review.md
 |   +-- brainstorm.md
 |   +-- vision.md
+|   +-- user-stories.md
+|   +-- backlog.md
 |   +-- project-kickoff.md
+|   +-- product-development-flow.md
+|   +-- create-agent.md
+|   +-- facilitator.md
+|   +-- communication.md
+|
++-- books/                           # Company Library - organized by domain
+|   +-- index.md                     # Master reference
+|   +-- leadership-management.md
+|   +-- product-innovation.md
+|   +-- startup-business.md
+|   +-- systems-flow.md
+|   +-- thinking-rationality.md
+|   +-- personal-effectiveness.md
+|   +-- engineering-technical.md
+|   +-- hiring.md
 |
 +-- company/                         # Company-wide (not project-specific)
 |   +-- docs/
 |   |   +-- vision.md                # Company vision
 |   |   +-- culture.md               # Culture principles
-|   |   +-- library.md               # Book references
 |   +-- decisions/                   # Company-wide decision logs
 |
 +-- projects/                        # Project artifacts (NOT portable)
@@ -374,11 +399,11 @@ vision-to-product/
 **Memories are project-specific. Agents and skills are portable.**
 
 When duplicating this system for a new company:
-1. Copy `agents/` and `skills/`
+1. Copy `agents/`, `skills/`, and `books/`
 2. Create new `company/` and `projects/` directories
 3. Memories don't transfer - each company starts fresh
 
-[ALEX: I want it to be defined as a skill instead of in a cloud mode because if I move the agents somewhere else and that place doesn't have the same structure, the same folders, folder structure, then the agents would break. They would try to do things. If we hardcode the knowledge in them about how to write documents, it would break for that place. So I want to make sure that we keep these locations in skills instead of in the agents. ]
+File locations are defined in skills (not hardcoded in agents) to maintain portability across different folder structures.
 
 ### Document Lookup Order
 
@@ -394,7 +419,7 @@ Project-specific context takes precedence over company-wide.
 
 ### Hybrid Model
 
-[ALEX: Again, this should be a skill as well, because if in the future we change to use Asana or Jira or any other kind of project management software, we could just change the skill and it would automatically take effect. ]
+Communication mechanisms are defined in the `communication.md` skill, which abstracts the underlying tool (Linear, Asana, Jira, or markdown files). This allows changing project management tools by updating a single skill.
 
 Three communication mechanisms depending on context:
 
@@ -447,9 +472,11 @@ When agents disagree:
 
 ### Proactive Opposing Views
 
-**Deliberately include contrarian agents to avoid echo chambers.**
+**Deliberately include contrarian perspectives to avoid echo chambers.**
 
-The Devil's Advocate agent presents alternative perspectives. This is constructive, not obstructionist.
+Two mechanisms:
+1. `consultant-devils-advocate.md` agent - Can be invoked for external challenge
+2. `thinking.md` skill behavior - Encourages all agents to play devil's advocate during deliberation
 
 ### Authority Model
 
@@ -459,17 +486,24 @@ The Devil's Advocate agent presents alternative perspectives. This is constructi
 
 ### Facilitator Role
 
+- Defined in `facilitator.md` skill
 - Coordinates multi-agent deliberations (5-6-7+ agents)
 - Collects different opinions
 - Provides counterarguments back to agents
-- Acts as "hub agent" for discussions
+- Acts as "hub" for discussions
 - Uses most capable model
 
 ### Board Self-Coordination
 
-- Board of Directors has a **Chairman**
-- Chairman coordinates board discussions directly
-- Does NOT use the Facilitator - board is self-coordinating
+- Board of Directors has a **Chairman** (`board-chairman.md`)
+- Chairman uses `facilitator.md` skill to coordinate board discussions
+- Board is self-coordinating within its tier
+
+### Hub Agents
+
+- `hub-consultancy.md` - Spawns relevant consultants based on context
+- Uses `facilitator.md` skill to coordinate consultant discussions
+- Determines which consultants are relevant for the current question
 
 ### Error Correction
 
@@ -490,7 +524,7 @@ The Devil's Advocate agent presents alternative perspectives. This is constructi
 5. Once decided, thinking sub-agents disappear
 6. Parent agent annotates the final decision
 
-This is defined in the `thinking.md` skill.
+This is defined in the `thinking.md` skill, which also includes devil's advocate behavior - prompting the agent to challenge its own assumptions.
 
 ---
 
@@ -502,6 +536,13 @@ Any agent can use the research skill:
 - Engineers research documentation
 - CMO researches marketing practices
 - Product researches competitors
+
+### Dual-Mode Research
+
+The `research.md` skill operates in two modes:
+
+1. **Project Research** - Market analysis, competitor research, user needs, best practices
+2. **Meta Research** - For creating agents and consultants. Researches public figures (their talks, books, methodologies) to inform consultant agent creation
 
 ### Dual Research Verification Pattern
 
@@ -580,13 +621,13 @@ Sub-agent 2 -----> Results B
 - Summarizes: decisions made, questions raised, state of work
 - Next session starts by reading the recap
 
-### File Reader Agent
+### File Reader Skill
 
 **Purpose:** Context window management.
 
 **Problem:** If CTO loads a large file, context window gets consumed.
 
-**Solution:** File Reader agent isolates that cost.
+**Solution:** File Reader skill isolates that cost.
 
 How it works:
 1. Receives prompt about what the requesting agent wants
@@ -600,7 +641,7 @@ How it works:
 ### Portability Reminder
 
 - All memory files live under `projects/{project}/`
-- When copying the system, only copy `agents/` and `skills/`
+- When copying the system, only copy `agents/`, `skills/`, and `books/`
 - Memories don't transfer
 
 ---
@@ -609,9 +650,12 @@ How it works:
 
 ### Who Handles Kickoff
 
-[ALEX: So actually, this should be. It's not only the director of product strategy. If it's product, then that's the case. But if we're talking about marketing, then it will be the director of marketing for each one of the departments. If we don't have agents for different departments for that kind of stuff, then the user should get a question back about what to do. It's just that in this case we're focusing on product, but later we're going to expand to other areas. ]
+Project kickoff routes to the appropriate department director based on project type:
 
-**Director of Product Strategy** - An agent whose job is to interview whoever started the project and gather necessary information.
+- **Product projects** -> Director of Product Strategy (`role-prod-director.md`)
+- **Marketing projects** -> Director of Marketing (`role-mkt-cmo.md`)
+- **Engineering projects** -> CTO (`role-eng-cto.md`)
+- **Other departments** -> If no agent exists for the relevant department, prompt the user for guidance
 
 ### Discovery-Based, Not Checklist
 
@@ -634,7 +678,7 @@ A vision document needs at minimum:
 User initiates project
         |
         v
-Director of Product Strategy triggered
+Route to appropriate department director
         |
         v
 Interview to uncover:
@@ -670,7 +714,15 @@ Project proceeds to next phases
 
 Example: PRD skill explicitly invokes Product Manager. But orchestrator can also pull in Devil's Advocate if it detects groupthink.
 
-[ALEX: I wonder if we should have one agent, which is a consultancy company that always triggers five consultants. One idea is asking the product manager to specifically request the DevOps advocate's opinion. Another idea is using that consultancy agency as a hub that then triggers consultants. Consultants, because I don't think the product manager is going to call all of the consultants that are needed. I like this concept of hub as a facilitation for what subagents to call]
+### Hub Agents for Consultant Coordination
+
+`hub-consultancy.md` acts as a consultancy firm that:
+- Analyzes the current context/question
+- Spawns relevant consultants based on expertise needed
+- Uses `facilitator.md` skill to coordinate their discussion
+- Synthesizes consultant input into actionable recommendations
+
+This hub pattern prevents the product manager from having to know which consultants to call - the hub makes that determination.
 
 ### Stage Dependencies
 
@@ -752,9 +804,18 @@ From past experience, agents fail to trigger when:
 
 ## 12. Company Library
 
-[ALEX: Let's keep these books in a separate file so that we can keep improving these books. Also, I think it makes sense to have these books separated by area: one file for leadership and management, another file for software engineering, and another file for product and innovation, and so on, so that each department can go and read only the library section that they want. ]
+The collection of books that inform agent behavior, organized by domain in separate files within the `books/` directory. Principles from these books are distilled into relevant agent definitions.
 
-The collection of books that inform agent behavior, organized by domain. Principles from these books are distilled into relevant agent definitions.
+**Organization:**
+- `books/index.md` - Master reference listing all books
+- `books/leadership-management.md`
+- `books/product-innovation.md`
+- `books/startup-business.md`
+- `books/systems-flow.md`
+- `books/thinking-rationality.md`
+- `books/personal-effectiveness.md`
+- `books/engineering-technical.md`
+- `books/hiring.md`
 
 ### Leadership & Management
 - High Output Management - Andrew S. Grove
@@ -829,10 +890,12 @@ The collection of books that inform agent behavior, organized by domain. Princip
 
 ### How Books Are Used
 
-1. Relevant books listed in agent definitions
-2. Key principles distilled and baked into behavior
-3. Agent creation skill asks which books to reference
-4. Current CLAUDE.md content goes into Coder agent
+1. Books organized in separate files by domain in `books/` directory
+2. `books/index.md` serves as master reference
+3. Relevant books listed in agent definitions with "Favorite Books" section
+4. Key principles distilled and baked into agent behavior
+5. `create-agent.md` skill ensures book references when creating/improving agents
+6. Departments can reference only their relevant book files
 
 ---
 
@@ -869,8 +932,8 @@ When an agent delegates:
 
 ### Document Standards
 
-Every document produced by agents should have:
-1. **TLDR** at the top (skill enforces this)
+Every document produced by agents should have (enforced by `writing-documents.md` skill):
+1. **TLDR** at the top
 2. **Paragraphs** for narrative content
 3. **Open questions** section
 4. **Guardrails/checklists** for high-level constraints
@@ -901,9 +964,10 @@ Future work items to be tackled as separate projects:
 - Feedback loops for agent improvement
 
 ### Onboarding New Agents
-- Skill for creating new agent definitions
+- `create-agent.md` skill for creating new agent definitions
 - Interview process for defining new roles
 - Book selection guidance
+- Research integration for consultant creation
 
 ### Cross-Project Learning
 - How insights from one project inform another
@@ -914,7 +978,7 @@ Future work items to be tackled as separate projects:
 
 ## 15. First Test Project
 
-[ALEX: Let's not create that yet. Fine to create the directory, etc., but let's not execute that yet. I want to set up the company first. ]
+**Note:** Setup company structure first. Do not execute this project yet - it serves as a reference for what the first test will look like once the agents and skills are in place.
 
 ### Claude Code Course Landing Page
 
@@ -961,20 +1025,26 @@ Merge & Deploy
 ---
 
 ## Appendix: Quick Reference
-[ALEX: Yeah, these are changing based on what we saw previously. ]
-### Agent Locations
-- Board: `agents/personas/board/`
-- Consultants: `agents/personas/consultants/`
-- Company roles: `agents/company/`
-- System agents: `agents/system/`
+
+### Agent Locations (Flat Structure)
+
+All agents in `agents/` directory with naming conventions:
+- Board: `board-{style}.md` (e.g., `board-chairman.md`, `board-conservative.md`)
+- Consultants: `consultant-{name}.md` (e.g., `consultant-ryan-singer.md`)
+- Company roles: `role-{dept}-{role}.md` (e.g., `role-prod-manager.md`)
+- Hub agents: `hub-{purpose}.md` (e.g., `hub-consultancy.md`)
 
 ### Key Skills
 - `memory.md` - Persistence patterns
-- `research.md` - Dual-verification research
-- `thinking.md` - Deliberative sub-agents
-- `tldr.md` - Document summaries [ALEX: not true anymore]
+- `research.md` - Dual-verification research (project + meta modes)
+- `thinking.md` - Deliberative sub-agents with devil's advocate behavior
+- `writing-documents.md` - Document standards including TLDR
+- `decision-making.md` - Tier 0 decision principles
 - `project-kickoff.md` - Discovery interviews
-- [ALEX: decision-making.md]
+- `create-agent.md` - Agent/skill creation and improvement
+- `facilitator.md` - Multi-agent coordination
+- `communication.md` - Project management tool abstraction
+- `product-development-flow.md` - Meta-skill for core flow orchestration
 
 ### Communication Patterns
 - Markdown files for decisions
@@ -983,7 +1053,7 @@ Merge & Deploy
 - Chairman for board meetings
 
 ### Portability
-- Copy: `agents/`, `skills/`
+- Copy: `agents/`, `skills/`, `books/`
 - Don't copy: `projects/`, `company/`
 
 ---
