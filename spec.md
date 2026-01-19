@@ -670,6 +670,8 @@ Project proceeds to next phases
 
 Example: PRD skill explicitly invokes Product Manager. But orchestrator can also pull in Devil's Advocate if it detects groupthink.
 
+[ALEX: I wonder if we should have one agent, which is a consultancy company that always triggers five consultants. One idea is asking the product manager to specifically request the DevOps advocate's opinion. Another idea is using that consultancy agency as a hub that then triggers consultants. Consultants, because I don't think the product manager is going to call all of the consultants that are needed. I like this concept of hub as a facilitation for what subagents to call]
+
 ### Stage Dependencies
 
 For product features:
@@ -749,6 +751,8 @@ From past experience, agents fail to trigger when:
 ---
 
 ## 12. Company Library
+
+[ALEX: Let's keep these books in a separate file so that we can keep improving these books. Also, I think it makes sense to have these books separated by area: one file for leadership and management, another file for software engineering, and another file for product and innovation, and so on, so that each department can go and read only the library section that they want. ]
 
 The collection of books that inform agent behavior, organized by domain. Principles from these books are distilled into relevant agent definitions.
 
@@ -910,6 +914,8 @@ Future work items to be tackled as separate projects:
 
 ## 15. First Test Project
 
+[ALEX: Let's not create that yet. Fine to create the directory, etc., but let's not execute that yet. I want to set up the company first. ]
+
 ### Claude Code Course Landing Page
 
 **Product:** Landing page for a Claude Code course
@@ -955,7 +961,7 @@ Merge & Deploy
 ---
 
 ## Appendix: Quick Reference
-
+[ALEX: Yeah, these are changing based on what we saw previously. ]
 ### Agent Locations
 - Board: `agents/personas/board/`
 - Consultants: `agents/personas/consultants/`
@@ -966,8 +972,9 @@ Merge & Deploy
 - `memory.md` - Persistence patterns
 - `research.md` - Dual-verification research
 - `thinking.md` - Deliberative sub-agents
-- `tldr.md` - Document summaries
+- `tldr.md` - Document summaries [ALEX: not true anymore]
 - `project-kickoff.md` - Discovery interviews
+- [ALEX: decision-making.md]
 
 ### Communication Patterns
 - Markdown files for decisions
