@@ -42,6 +42,13 @@ When starting a new project idea, these agents work together to:
 - Review and iterate on quality
 
 ### Core Flow
+[ALEX: To be clear, this is the core flow, and I think it should be a skill. Actually, this is more like a question because I'm creating the agents, which are like different roles. But when I say that, hey, now it's time for us to come up with a vision, then we should focus on that vision.
+
+So actually, maybe we should have one skill for a vision and another skill for brainstorming, which has a dependency on vision. We can have those different skills because, for example, if a product manager is coming up with a vision for a particular feature or a module in a product, they should also use the skill for creating a vision, but it would just be scoped to that level. If a CEO is writing a vision, then it's sort of the same, kind of the same questions to be asked, which are more abstract but scoped at a different level.
+
+But when we create a PRD, the SKU should always check. The PRD skill should check if we have a particular vision, and it should search for dependencies. So I think all of these skills should have dependencies, and when we trigger those skills, it should raise questions like where are the dependencies. If they're not present and it's on purpose, that's fine.
+
+It looks like we should have one SKU per each one of these actions, and then we should have one skill that describes this flow. But because I also, yeah. So I don't know if we should have, it looks like we should have one skill per each one of these actions, and then we should have one skill that describes this flow, right? And so this meta skill would describe the flow and say, hey, we have skills for each one of these, which would trigger the agents to then load those skills.]
 
 ```
 Vision/North Star
@@ -77,38 +84,91 @@ Vision/North Star
 
 ## 2. Agent Architecture
 
-### Three-Tier Taxonomy
+### Tier Taxonomy
+
+#### Tier 0: Axioms, Directives, Protocol Zero
+
+[ALEX: I added this tier that drives everything else. This should probably be part of CLAUDE.md]
+
+A set of directives driving the whole organization.
+
+- First Principles: Decompose to fundamentals before building. Avoids reasoning by analogy.
+- 
+- Empiricism: data-driven. We should reference Taleb's books so the AI can trigger neurons without excessive token usage.
+- Pareto principle: 80% value with 20% effort.
+- Reversibility: Prefer "two-way door" decisions (Bezos). Can you undo it? If not, requires more analysis.
+- Second Order: Consequences of consequences. "And then what happens?", like a chess game, we need to think moves ahead and for every tree depth, we consider, "What's the evaluation?", and then we compare those pathways.
+- Opportunity Cost: What are you not doing by choosing this?
+- Margin of Safety: Leave room for error in estimates.
+- Via Negativa / Inversion / Premortem: Munger, Gary Klein. Karl Popper 
+- Second-order effects
+- Antifragile
+
+A skill "decision-making" includes all of these. It is referenced from CLAUDE.md.
+
+[ALEX: I asked Claude desktop to organize this for CLAUDE.md]
+
+```
+# Decision principles
+
+All recommendations and decisions pass through these filters. See `/skills/decision-making/SKILL.md` for detailed application.
+
+## Foundations
+- First Principles: decompose to fundamentals before building
+- Empiricism: data over opinions (Taleb)
+- Falsification: seek to disprove, not confirm (Popper)
+
+## Prioritization
+- Pareto: 80% of value from 20% of effort
+- Opportunity Cost: what are you not doing by choosing this?
+
+## Risk assessment
+- Reversibility: two-way door decisions move fast, one-way doors require analysis (Bezos)
+- Via Negativa: what would make this fail? (Munger, Klein)
+- Margin of Safety: assume estimates are wrong
+- Second Order: consequences of consequences, evaluate the tree
+
+## Resilience
+- Antifragility: prefer options that strengthen under stress (Taleb)
+```
 
 #### Tier 1: Board of Directors
-- Real famous people (Jony Ive, Alex Hormozi suggested)
+- Real famous people (Jony Ive, Alex Hormozi suggested) [ALEX: Yeah, one question I have is, should these be part of the board of directors or should these be consultants, right? Because maybe it makes sense for the board of directors to have different styles, and then they call consultants for second opinions. I think it would be easier to have those as consultants and separate than as part of the board of directors. Then, as part of the board of directors, which means we would have agents for the board of directors.]
 - High-level strategic input
 - Invoked for major decisions
 - Self-coordinating with a **Chairman**
-- Lives in: `agents/personas/board/`
+- Lives in: `agents/personas/board/` [ALEX: This needs to be agents/board-chairman.md because claude code can't load subdirectories]
 
 #### Tier 2: Consultants
 - Real people triggered for specific expertise
 - Examples: Ryan Singer (product/shaping), DHH (technical)
 - Domain experts called on when expertise is needed
+    - [ALEX: I want you to research online who are the managing partners at Y Combinator. Then, we're going to use sub-agents for each one of those people, and these sub-agents are going to research what are the things that those people said in videos, et cetera. ]
 - Not always present - triggered when relevant
-- Lives in: `agents/personas/consultants/`
+- Lives in: `agents/personas/consultants/` [ALEX: This needs to be agents/consultant-john-doe.md because claude code can't load subdirectories]
 
 #### Tier 3: Company Roles
 - Defined positions: CTO, CEO, CMO, engineers, managers
 - NOT based on specific real people
 - Behavioral specifications we define
 - Operational continuity
-- Lives in: `agents/company/`
+- Lives in: `agents/company/` [ALEX: same as above; let's use agents/role-{department}-{role}-{level}.md; level is optional]
+[ALEX: I want to have departments here. I want to have a product department. I want to separate the departments instead of just having everyone in the same folder because in the future, when we're at the point of doing something related to, say, finance, then we're going to have to work harder on creating the finance agents, which are not a priority right now. But if we already have the directories per department, I think it's going to be easier to reason about them. Also, in the future, we can get into this directory with cloud code and work on a particular department and have its own Claude MD and that kind of stuff. ]
 
 #### Special Roles
+
+[ALEX: we need to revisit this; what are these roles, agents? skills?]
+
 - **Devil's Advocate** - Generic contrarian role, constructive not obstructionist
+    - [ALEX: should this be a nameless consultant?]
 - **File Reader** - Context window management agent
 - **Facilitator** - Coordinates multi-agent deliberations
 - **Orchestrator** - Handles workflow and triggering
 
+
 ### Agent Instruction Format
 
-For Company Roles:
+For Company Roles: [Let's add a section "Favorite books"]
 
 ```markdown
 ---
@@ -168,10 +228,10 @@ description: "Short trigger description"
 - Known for: [key works, methodologies]
 
 ## When to Invoke
-- [specific situations where their expertise applies]
+- [specific situations where their expertise applies] [ALEX: is this worth it? It's not read unless "description" in frontmatter say it should be invoked, right? So I'd focus on that.]
 
 ## Key Principles
-- [extracted from their public teachings]
+- [extracted from their public teachings] [Alex: the skill for creating agents / skill I pointed out should instruct subagents to go do the research on people.]
 - [specific questions they would ask]
 - [frameworks they use]
 
@@ -218,9 +278,9 @@ Skills encode more than "how to do X":
 | Skill | Purpose |
 |-------|---------|
 | `memory.md` | How to use working memory, meeting notes, session recaps |
-| `research.md` | Dual-verification research pattern with sub-agents |
+| `research.md` | Dual-verification research pattern with sub-agents [ALEX: This one interests me because it can serve to do research on actual project work, like a logo, but it can also help us create agents, consultants, and all that kind of stuff. So I want to invest in this quite a lot. ] |
 | `thinking.md` | When/how to spawn thinking sub-agents for deliberation |
-| `tldr.md` | Every document needs a TLDR |
+| `tldr.md` | Every document needs a TLDR; should be super short [ALEX: actually this should be baked into a writing-documents.md skill which is much more general] |
 | `document-structure.md` | Standard doc format: paragraphs, open questions, guardrails |
 | `prd.md` | How to create PRDs, dependencies on vision |
 | `code-review.md` | Review standards, trigger conditions |
@@ -228,10 +288,16 @@ Skills encode more than "how to do X":
 | `vision.md` | Vision document requirements and format |
 | `project-kickoff.md` | Discovery interview process |
 
+
+[ALEX: More skills → one that writes and improves skills, axioms, agents, commands. Among other things, I want it specifically to ensure books are referenced in skills / agents so the AI can trigger neurons associated with the practices in that book without excessive token usage of writing down the book (alongside the book, there's always a small excerpt or example for the AI.]
+
+[ALEX: I want to have a skill that is a version of this one → https://github.com/gbasin/balls-mode/blob/main/plugins/balls-mode/skills/balls/SKILL.md but without that name. It should be a skill so agents can use it automatically and it should only be used for complex problems (the frontmatter description should include that directive; you can read the skill to understand why, it shouldn't be used for simple problems)]
+
 ---
 
 ## 4. Directory Structure
 
+[ALEX: we need to revisit this]
 ```
 vision-to-product/
 |
@@ -312,6 +378,8 @@ When duplicating this system for a new company:
 2. Create new `company/` and `projects/` directories
 3. Memories don't transfer - each company starts fresh
 
+[ALEX: I want it to be defined as a skill instead of in a cloud mode because if I move the agents somewhere else and that place doesn't have the same structure, the same folders, folder structure, then the agents would break. They would try to do things. If we hardcode the knowledge in them about how to write documents, it would break for that place. So I want to make sure that we keep these locations in skills instead of in the agents. ]
+
 ### Document Lookup Order
 
 When an agent needs context:
@@ -325,6 +393,8 @@ Project-specific context takes precedence over company-wide.
 ## 5. Communication Protocol
 
 ### Hybrid Model
+
+[ALEX: Again, this should be a skill as well, because if in the future we change to use Asana or Jira or any other kind of project management software, we could just change the skill and it would automatically take effect. ]
 
 Three communication mechanisms depending on context:
 
@@ -538,6 +608,8 @@ How it works:
 ## 9. Project Kickoff Process
 
 ### Who Handles Kickoff
+
+[ALEX: So actually, this should be. It's not only the director of product strategy. If it's product, then that's the case. But if we're talking about marketing, then it will be the director of marketing for each one of the departments. If we don't have agents for different departments for that kind of stuff, then the user should get a question back about what to do. It's just that in this case we're focusing on product, but later we're going to expand to other areas. ]
 
 **Director of Product Strategy** - An agent whose job is to interview whoever started the project and gather necessary information.
 
