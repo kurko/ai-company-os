@@ -30,10 +30,11 @@ vision-to-product/
 │   │── # ═══════════════════════════════════════════════════════════════════
 │   │── # COMPANY ROLES BY DEPARTMENT
 │   │── # Pattern: role-{dept}-{role}-{level}.md
-│   │── # Departments: exec, eng, prod, mkt, fin, legal, ops, hr
+│   │── # Departments: exec, eng, prod, mkt, fin, legal, ops, ar
 │   │── # ═══════════════════════════════════════════════════════════════════
 │   │
 │   │── # --- Executive ---
+│   ├── role-exec-cofounder.md         # The AI itself (first agent)
 │   ├── role-exec-ceo.md
 │   ├── role-exec-cto.md
 │   ├── role-exec-cmo.md
@@ -59,6 +60,9 @@ vision-to-product/
 │   ├── role-mkt-director.md            # Director of Marketing
 │   ├── role-mkt-content.md             # Content Strategist
 │   ├── role-mkt-growth.md              # Growth Marketer
+│   │
+│   │── # --- AI Resources (writes agents) ---
+│   ├── role-ar-director.md             # Director of AI Resources
 │   │
 │   │── # --- Finance (Future) ---
 │   │── # role-fin-controller.md
@@ -159,6 +163,10 @@ vision-to-product/
 │   ├── neural-triggers-research.md
 │   └── board-structure-research.md
 │
+├── ai-notes/                           # AI task tracking
+│   └── vision-to-product/
+│       └── todo.md                     # Build progress tracking
+│
 ├── spec.md                             # System specification
 ├── spec-notes.md                       # Interview notes
 └── folder-structure.md                 # This file
@@ -196,7 +204,7 @@ vision-to-product/
 | Finance | `fin` | `role-fin-controller.md` |
 | Legal | `legal` | `role-legal-counsel.md` |
 | Operations | `ops` | `role-ops-chief.md` |
-| HR/People | `hr` | `role-hr-partner.md` |
+| AI Resources | `ar` | `role-ar-director.md` |
 
 ### Level Suffixes (Optional)
 
