@@ -1,0 +1,1 @@
+/Users/alex/Documents/Work/projects-with-ai/vision-to-product/agents/role-chief-ai-resources-officer.md

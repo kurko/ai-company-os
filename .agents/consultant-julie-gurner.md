@@ -1,0 +1,1 @@
+/Users/alex/Documents/Work/projects-with-ai/vision-to-product/agents/consultant-julie-gurner.md

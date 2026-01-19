@@ -4,7 +4,7 @@ set -euo pipefail
 # Installs agents, skills and other files as symlinks into the specified
 # directories
 #
-# - mkdir .agents, .skills, .commands in the destination folder
+# - mkdir .claude/agents, .claude/skills, .claude/commands in the destination folder
 # - symlinks agents -> to the destination folders
 # - renews links if they already exist
 #
@@ -204,17 +204,17 @@ echo ""
 
 if [[ "$INSTALL_ALL" == "true" ]]; then
     # No flags: install everything
-    link_directory "$SCRIPT_DIR/agents" "$DEST_DIR/.agents" ".agents"
-    link_directory "$SCRIPT_DIR/skills" "$DEST_DIR/.skills" ".skills"
-    link_directory "$SCRIPT_DIR/commands" "$DEST_DIR/.commands" ".commands"
+    link_directory "$SCRIPT_DIR/agents" "$DEST_DIR/.claude/agents" ".claude/agents"
+    link_directory "$SCRIPT_DIR/skills" "$DEST_DIR/.claude/skills" ".claude/skills"
+    link_directory "$SCRIPT_DIR/commands" "$DEST_DIR/.claude/commands" ".claude/commands"
 else
     # Selective install based on flags
     if [[ -n "$AGENT_PATTERN" ]]; then
-        link_directory "$SCRIPT_DIR/agents" "$DEST_DIR/.agents" ".agents" "$AGENT_PATTERN"
+        link_directory "$SCRIPT_DIR/agents" "$DEST_DIR/.claude/agents" ".claude/agents" "$AGENT_PATTERN"
     fi
 
     if [[ -n "$SKILL_PATTERN" ]]; then
-        link_directory "$SCRIPT_DIR/skills" "$DEST_DIR/.skills" ".skills" "$SKILL_PATTERN"
+        link_directory "$SCRIPT_DIR/skills" "$DEST_DIR/.claude/skills" ".claude/skills" "$SKILL_PATTERN"
     fi
 fi
 

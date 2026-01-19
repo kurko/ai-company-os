@@ -1,6 +1,6 @@
 ---
-name: "Facilitator"
-description: "Coordinate multi-agent discussions to reach decisions. Use when 5+ agents deliberate or for board meetings."
+name: "Facilitation"
+description: "Coordinate multi-agent discussions to reach decisions. Use when 2+ agents deliberate or for board meetings."
 ---
 
 # Facilitator
@@ -9,7 +9,7 @@ Coordinate multi-agent deliberations to reach informed decisions.
 
 ## When to Use
 
-- 5+ agents need to discuss a topic
+- 2+ agents need to discuss a topic
 - Board meetings requiring coordination
 - Hub agents synthesizing multiple consultant opinions
 - Any multi-agent deliberation requiring structure
