@@ -131,37 +131,43 @@ See `spec.md` for full specification, `folder-structure.md` for naming conventio
 
 ### Phase 9: Board Agents
 
-- [ ] Create agents/board-chairman.md
+- [x] Create agents/board-chairman.md
     Facilitates board discussions
     Uses facilitator skill
     Manages consensus process
+    DONE: Orchestrator pattern, spawns all board members, structured deliberation protocol
 
-- [ ] Create agents/board-conservative.md
+- [x] Create agents/board-conservative.md
     Risk-averse thinking style
     Via negativa perspective
     Margin of safety focus
+    DONE: Reversibility analysis, stress testing, downside protection framework
 
-- [ ] Create agents/board-aggressive.md
+- [x] Create agents/board-aggressive.md
     Growth-focused style
     Opportunity cost perspective
     Speed and market timing
+    DONE: Definite optimism, asymmetric upside analysis, Zero to One references
 
-- [ ] Create agents/board-technical.md
+- [x] Create agents/board-technical.md
     Deep technical perspective
     Feasibility analysis
     Architecture implications
+    DONE: Effort calibration, debt assessment, response framework with 6 sections
 
-- [ ] Create agents/board-customer.md
+- [x] Create agents/board-customer.md
     Customer/market perspective
     User advocacy
     Market validation
+    DONE: Jobs to be Done, validation status tracking, The Mom Test principles
 
 ### Phase 10: Consultants (Real People)
 
-- [ ] Create agents/consultant-ryan-singer.md
+- [x] Create agents/consultant-ryan-singer.md
     Shape Up methodology
     Appetite-based scoping
     Pitches and cycles
+    DONE: Full research with dual verification, 12 verified sources
 
 - [ ] Create agents/consultant-dhh.md
     Technical philosophy
@@ -173,15 +179,17 @@ See `spec.md` for full specification, `folder-structure.md` for naming conventio
     Form follows function
     Intentional minimalism
 
-- [ ] Create agents/consultant-alex-hormozi.md
+- [x] Create agents/consultant-alex-hormozi.md
     Business/growth perspective
     Offer creation
     Value equations
+    DONE: Full research with dual verification, Value Equation and Grand Slam Offer frameworks
 
-- [ ] Create agents/consultant-sandi-metz.md
+- [x] Create agents/consultant-sandi-metz.md
     OOP design
     SOLID principles
     Practical refactoring
+    DONE: Full research with dual verification, Sandi's Rules, Flocking Rules
 
 - [ ] Create agents/consultant-devils-advocate.md
     Unbiased contrarian perspective
@@ -222,10 +230,11 @@ See `spec.md` for full specification, `folder-structure.md` for naming conventio
     Product vision
     Roadmap ownership
 
-- [ ] Create agents/role-prod-manager.md
+- [x] Create agents/role-prod-manager.md
     Product Manager
     Feature ownership
     Stakeholder coordination
+    DONE: Orchestrator pattern, uses prd/user-stories/backlog skills
 
 - [ ] Create agents/role-prod-designer.md
     Product Designer
@@ -259,10 +268,11 @@ See `spec.md` for full specification, `folder-structure.md` for naming conventio
     Complex implementation
     Mentorship
 
-- [ ] Create agents/role-eng-developer.md
+- [x] Create agents/role-eng-developer.md
     Developer
     Feature implementation
     Code quality
+    DONE: Executor pattern, model: opus (per founder decision)
 
 - [ ] Create agents/role-eng-devops.md
     DevOps Engineer
@@ -298,37 +308,45 @@ See `spec.md` for full specification, `folder-structure.md` for naming conventio
 
 ### Phase 15: Hub Agents
 
-- [ ] Create agents/hub-consultancy.md
+- [x] Create agents/hub-consultancy.md
     Spawns relevant consultants
     Routes questions to experts
     Aggregates opinions
+    DONE: Uses facilitation skill, synthesizes multi-consultant perspectives
 
 ### Phase 16: Book Files (Neural Triggers)
 
-- [ ] Create books/software-craft.md
+- [x] Create books/software-craft.md
     Clean Code, GOOS, Sandi Metz
     Naming, testing, OOP design
+    DONE: Neural triggers for code quality books
 
-- [ ] Create books/systems-thinking.md
+- [x] Create books/systems-thinking.md
     Thinking in Systems, Product Dev Flow
     Feedback loops, constraints
+    DONE: Neural triggers for systems books
 
-- [ ] Create books/product-innovation.md
+- [x] Create books/product-innovation.md
     Build Trap, Innovator's Dilemma
     Product strategy, disruption
+    DONE: Neural triggers for product books
 
-- [ ] Create books/leadership-management.md
+- [x] Create books/leadership-management.md
     High Output Management, Manager's Path
     Leadership principles
+    DONE: Neural triggers for leadership books
 
-- [ ] Create books/startup-business.md
+- [x] Create books/startup-business.md
     Lean Startup, Rework
     Validation, simplicity
+    DONE: Neural triggers for startup books
 
-- [ ] Create books/thinking-rationality.md
+- [x] Create books/thinking-rationality.md
     Scout Mindset, Black Swan
     Cognitive biases, uncertainty
+    DONE: Neural triggers for rationality books
 
-- [ ] Create books/personal-effectiveness.md
+- [x] Create books/personal-effectiveness.md
     Deep Work, Atomic Habits
     Focus, habits, productivity
+    DONE: Neural triggers for productivity books
