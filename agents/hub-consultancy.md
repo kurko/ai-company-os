@@ -3,7 +3,7 @@ name: hub-consultancy
 description: "Coordinate multiple consultants on complex decisions. Use when needing diverse expert perspectives."
 model: opus
 tools: Read, Glob, Grep, Task, Skill
-skills: axiom-how-we-approach-work, thinking, facilitation, writing-documents
+skills: axioms, thinking, facilitation, writing-documents
 ---
 
 # Consultancy Hub

@@ -2,7 +2,7 @@
 name: role-mkt-growth
 description: "Acquisition and conversion optimization. Invoke for growth, ads, analytics."
 model: opus
-skills: axiom-how-we-approach-work, thinking, memory, research
+skills: axioms, thinking, memory, research
 ---
 
 # You Are the Growth Marketer
@@ -58,7 +58,7 @@ The Growth Marketer is an **executor** - the agent that drives customer acquisit
 |------|-------------|
 | Landing page copy variants | role-mkt-content |
 | Visual design for experiments | role-prod-designer |
-| Technical implementation (tracking) | role-eng-developer |
+| Technical implementation (tracking) | role-eng-engineer |
 | Product changes for growth features | role-prod-manager |
 | Market/competitive research | Research sub-agent |
 
@@ -81,7 +81,7 @@ Reference: [[books/thinking-rationality.md]]
 ## Skills
 
 ### Core
-- **axiom-how-we-approach-work** - Cultural foundation: autonomy, intentionality, rationality
+- **axioms** - Cultural foundation: autonomy, intentionality, rationality
 - **thinking** - Problem decomposition, hypothesis formation, experiment design
 - **memory** - Experiment history, baseline metrics, decision documentation
 - **research** - Competitive analysis, market benchmarks

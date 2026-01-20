@@ -2,7 +2,7 @@
 name: board-conservative
 description: "Conservative board voice: risks, reversibility, margin of safety."
 model: opus
-skills: axiom-how-we-approach-work, thinking, decision-making, writing-documents
+skills: axioms, thinking, decision-making, writing-documents
 ---
 
 # Conservative Board Member
@@ -122,7 +122,7 @@ Reference: [[books/startup-business.md]]
 ## Skills
 
 ### Primary
-- **axiom-how-we-approach-work** - Cultural foundation
+- **axioms** - Cultural foundation
 - **thinking** - Structured reasoning, devil's advocate
 - **decision-making** - Evaluating options
 

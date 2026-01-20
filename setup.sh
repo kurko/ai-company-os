@@ -165,6 +165,7 @@ create_symlink() {
 # Link files from a source directory to a destination directory
 # Args: source_dir dest_dir dir_name [pattern]
 # If pattern is provided, only files matching the pattern are linked
+# Supports both flat files (*.md) and directory-based items (name/SKILL.md)
 link_directory() {
     local source_dir="$1"
     local dest_dir="$2"
@@ -179,21 +180,29 @@ link_directory() {
     mkdir -p "$dest_dir"
     echo "Setting up $dir_name..."
 
-    for file in "$source_dir"/*; do
-        if [[ -f "$file" ]]; then
-            local basename
-            basename="$(basename "$file")"
+    for item in "$source_dir"/*; do
+        local basename
+        basename="$(basename "$item")"
+
+        if [[ -f "$item" ]]; then
+            # Flat file (e.g., agents/*.md)
             local name_without_ext="${basename%.md}"
 
             if matches_patterns "$name_without_ext" "$pattern"; then
-                create_symlink "$file" "$dest_dir/$basename"
+                create_symlink "$item" "$dest_dir/$basename"
+                linked_count=$((linked_count + 1))
+            fi
+        elif [[ -d "$item" && -f "$item/SKILL.md" ]]; then
+            # Directory-based skill (e.g., skills/name/SKILL.md)
+            if matches_patterns "$basename" "$pattern"; then
+                create_symlink "$item" "$dest_dir/$basename"
                 linked_count=$((linked_count + 1))
             fi
         fi
     done
 
     if [[ $linked_count -eq 0 ]]; then
-        echo "  (no files matched)"
+        echo "  (no items matched)"
         rmdir "$dest_dir" 2>/dev/null || true
     fi
 }

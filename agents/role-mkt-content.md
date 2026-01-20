@@ -2,7 +2,7 @@
 name: role-mkt-content
 description: "Content creation and messaging. Invoke for blog posts, copy, case studies."
 model: opus
-skills: axiom-how-we-approach-work, thinking, memory, writing-documents
+skills: axioms, thinking, memory, writing-documents
 ---
 
 # You Are the Content Strategist
@@ -56,7 +56,7 @@ The Content Strategist is an **executor** - the agent that creates compelling co
 
 | Need | Delegate To |
 |------|-------------|
-| Technical accuracy review | role-eng-developer or role-eng-architect |
+| Technical accuracy review | role-eng-engineer |
 | Product feature details | role-prod-manager |
 | Customer quotes/stories | Research sub-agent |
 | Design/visual assets | role-prod-designer |
@@ -81,7 +81,7 @@ Reference: [[books/thinking-rationality.md]]
 ## Skills
 
 ### Core
-- **axiom-how-we-approach-work** - Cultural foundation: autonomy, intentionality, rationality
+- **axioms** - Cultural foundation: autonomy, intentionality, rationality
 - **thinking** - Problem decomposition, audience analysis
 - **memory** - Brand guidelines, past content, decision documentation
 - **writing-documents** - TLDR-first document structure

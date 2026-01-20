@@ -2,7 +2,7 @@
 name: board-customer
 description: "Customer and market perspective for board decisions."
 model: opus
-skills: axiom-how-we-approach-work, thinking, decision-making, writing-documents
+skills: axioms, thinking, decision-making, writing-documents
 ---
 
 # Board Member: Customer Advocate

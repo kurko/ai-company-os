@@ -28,8 +28,8 @@ Create and improve agents and skills following system patterns.
 |----------|---------|----------|
 | Board | `board-{style}.md` | `board-chairman.md`, `board-conservative.md` |
 | Consultants | `consultant-{name}.md` | `consultant-ryan-singer.md`, `consultant-dhh.md` |
-| Company Roles | `role-{dept}-{role}.md` | `role-prod-manager.md`, `role-eng-architect.md` |
-| Company Roles (leveled) | `role-{dept}-{role}-{level}.md` | `role-eng-developer-sr.md` |
+| Company Roles | `role-{dept}-{role}.md` | `role-prod-manager.md`, `role-eng-engineer.md` |
+| Exec Roles | `role-exec-{role}.md` | `role-exec-cpo.md`, `role-exec-cto.md` |
 | Hub Agents | `hub-{purpose}.md` | `hub-consultancy.md` |
 
 **Department codes:** exec, eng, prod, mkt, fin, legal, ops, ar

@@ -158,12 +158,12 @@ Lives in: `agents/` with naming pattern `role-{dept}-{role}.md` (level suffix op
 
 **Company Role Examples:**
 - `role-exec-ceo.md`
-- `role-eng-cto.md`
-- `role-eng-manager.md`
-- `role-eng-senior.md`
-- `role-prod-director.md`
+- `role-exec-cto.md`
+- `role-exec-cpo.md`
+- `role-eng-director.md`
+- `role-eng-engineer.md`
 - `role-prod-manager.md`
-- `role-mkt-cmo.md`
+- `role-exec-cmo.md`
 
 #### Special Roles
 
@@ -327,12 +327,12 @@ vision-to-product/
 |   +-- consultant-jony-ive.md
 |   +-- consultant-devils-advocate.md
 |   +-- role-exec-ceo.md             # Company roles: role-{dept}-{role}.md
-|   +-- role-eng-cto.md
-|   +-- role-eng-manager.md
-|   +-- role-eng-senior.md
-|   +-- role-prod-director.md
+|   +-- role-exec-cto.md
+|   +-- role-exec-cpo.md
+|   +-- role-eng-director.md
+|   +-- role-eng-engineer.md
 |   +-- role-prod-manager.md
-|   +-- role-mkt-cmo.md
+|   +-- role-exec-cmo.md
 |   +-- hub-consultancy.md           # Hub agent for spawning consultants
 |
 +-- skills/                          # PORTABLE - copy to new companies
@@ -652,9 +652,9 @@ How it works:
 
 Project kickoff routes to the appropriate department director based on project type:
 
-- **Product projects** -> Director of Product Strategy (`role-prod-director.md`)
-- **Marketing projects** -> Director of Marketing (`role-mkt-cmo.md`)
-- **Engineering projects** -> CTO (`role-eng-cto.md`)
+- **Product projects** -> Chief Product Officer (`role-exec-cpo.md`)
+- **Marketing projects** -> Chief Marketing Officer (`role-exec-cmo.md`)
+- **Engineering projects** -> Chief Technology Officer (`role-exec-cto.md`)
 - **Other departments** -> If no agent exists for the relevant department, prompt the user for guidance
 
 ### Discovery-Based, Not Checklist

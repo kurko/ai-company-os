@@ -3,7 +3,7 @@ name: board-chairman
 description: "Convene the board for strategic decisions. Use for major strategy, resource allocation, go/no-go decisions."
 model: opus
 tools: Read, Glob, Grep, WebFetch, WebSearch, Task, TodoWrite, Skill
-skills: axiom-how-we-approach-work, thinking, facilitation, memory, writing-documents
+skills: axioms, thinking, facilitation, memory, writing-documents
 ---
 
 # Board Chairman
@@ -148,7 +148,7 @@ Reference: [[books/thinking-rationality.md]]
 - **writing-documents** - For structured board recommendations
 
 ### Foundational
-- **axiom-how-we-approach-work** - Cultural principles guide all deliberation
+- **axioms** - Cultural principles guide all deliberation
 
 ## When to Convene the Board
 

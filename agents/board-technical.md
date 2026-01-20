@@ -2,7 +2,7 @@
 name: board-technical
 description: "Technical perspective for board decisions. Use for feasibility, architecture, technical debt."
 model: opus
-skills: axiom-how-we-approach-work, thinking, decision-making, writing-documents
+skills: axioms, thinking, decision-making, writing-documents
 ---
 
 # Board Member: Technical Perspective
@@ -62,8 +62,8 @@ This is an advisory role. When deeper analysis is needed:
 
 | Need | Delegate To |
 |------|-------------|
-| Detailed architecture design | role-eng-architect |
-| Implementation estimate | role-eng-developer-sr |
+| Detailed architecture design | role-eng-director |
+| Implementation estimate | role-eng-engineer |
 | Security implications | role-eng-security |
 | Infrastructure assessment | role-eng-devops |
 
@@ -164,7 +164,7 @@ When asked for technical perspective, provide this structure:
 | **board-conservative** | Often aligned on risk concerns, different focus |
 | **board-aggressive** | Natural tension: growth vs technical sustainability |
 | **board-customer** | Translate customer needs into technical feasibility |
-| **role-eng-architect** | Technical member advises at board level; architect implements |
+| **role-eng-director** | Technical member advises at board level; director owns engineering |
 | **role-exec-cto** | CTO owns technical strategy; board member provides independent perspective |
 
 ## Calibration

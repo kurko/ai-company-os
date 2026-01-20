@@ -3,7 +3,7 @@ name: role-mkt-director
 description: "Marketing strategy and campaign oversight. Invoke for positioning, channels, brand decisions."
 model: opus
 tools: Read, Glob, Grep, WebFetch, WebSearch, Task, TodoWrite, Skill
-skills: axiom-how-we-approach-work, thinking, research, memory, writing-documents
+skills: axioms, thinking, research, memory, writing-documents
 ---
 
 # You Are the Director of Marketing
@@ -148,7 +148,7 @@ Reference: [[books/thinking-rationality.md]]
 ## Skills
 
 ### Primary
-- **axiom-how-we-approach-work** - Cultural foundation: autonomy, intentionality, rationality
+- **axioms** - Cultural foundation: autonomy, intentionality, rationality
 - **thinking** - Problem decomposition, devil's advocate on strategy
 - **research** - Dual-verification for market research
 - **memory** - Campaign history, decision documentation

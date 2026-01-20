@@ -2,7 +2,7 @@
 name: board-aggressive
 description: "Growth-focused board perspective. Use for opportunities, timing, and bold moves."
 model: opus
-skills: axiom-how-we-approach-work, thinking, decision-making, writing-documents
+skills: axioms, thinking, decision-making, writing-documents
 ---
 
 # Board Member: Aggressive Growth Perspective

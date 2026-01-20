@@ -37,21 +37,19 @@ vision-to-product/
 │   ├── role-exec-cofounder.md         # The AI itself (first agent)
 │   ├── role-exec-ceo.md
 │   ├── role-exec-cto.md
+│   ├── role-exec-cpo.md               # Chief Product Officer
 │   ├── role-exec-cmo.md
 │   ├── role-exec-cfo.md
 │   │
 │   │── # --- Product ---
-│   ├── role-prod-director.md           # Director of Product Strategy
 │   ├── role-prod-manager.md            # Product Manager
 │   ├── role-prod-designer.md           # Product Designer
 │   ├── role-prod-researcher.md         # User Researcher
 │   │
 │   │── # --- Engineering ---
-│   ├── role-eng-director.md            # Director of Engineering
-│   ├── role-eng-manager.md             # Engineering Manager
-│   ├── role-eng-architect.md           # Software Architect
-│   ├── role-eng-developer-sr.md        # Senior Developer
-│   ├── role-eng-developer.md           # Developer
+│   ├── role-eng-director.md            # Director of Engineering (includes mgmt)
+│   ├── role-eng-engineer.md            # Staff Engineer (IC)
+│   ├── role-eng-code-reviewer.md       # Code Reviewer
 │   ├── role-eng-devops.md              # DevOps Engineer
 │   ├── role-eng-security.md            # Security Engineer
 │   ├── role-eng-qa.md                  # QA Engineer
@@ -76,50 +74,50 @@ vision-to-product/
 │   │── # ═══════════════════════════════════════════════════════════════════
 │   └── hub-consultancy.md              # Spawns relevant consultants
 │
-├── skills/                             # All skills
+├── skills/                             # All skills (directory-based: name/SKILL.md)
 │   │
 │   │── # ═══════════════════════════════════════════════════════════════════
 │   │── # CORE SKILLS (No dependencies)
 │   │── # ═══════════════════════════════════════════════════════════════════
-│   ├── thinking.md                     # Complex problem decomposition
-│   ├── decision-making.md              # Tier 0 axioms & principles
-│   ├── writing-documents.md            # TLDR, structure, formatting
-│   ├── memory.md                       # Working memory, session recaps
-│   ├── facilitator.md                  # Coordinating multi-agent discussions
+│   ├── thinking/SKILL.md               # Complex problem decomposition
+│   ├── decision-making/SKILL.md        # Tier 0 axioms & principles
+│   ├── writing-documents/SKILL.md      # TLDR, structure, formatting
+│   ├── memory/SKILL.md                 # Working memory, session recaps
+│   ├── facilitation/SKILL.md           # Coordinating multi-agent discussions
 │   │
 │   │── # ═══════════════════════════════════════════════════════════════════
 │   │── # RESEARCH & CREATION SKILLS
 │   │── # ═══════════════════════════════════════════════════════════════════
-│   ├── research.md                     # Dual-mode: project + meta research
-│   ├── create-agent.md                 # Create/improve agents & skills
+│   ├── research/SKILL.md               # Dual-mode: project + meta research
+│   ├── create-agent/SKILL.md           # Create/improve agents & skills
 │   │
 │   │── # ═══════════════════════════════════════════════════════════════════
 │   │── # PRODUCT DEVELOPMENT FLOW
 │   │── # (Each skill has dependencies on previous stages)
 │   │── # ═══════════════════════════════════════════════════════════════════
-│   ├── product-development-flow.md     # Meta-skill: orchestrates full flow
-│   ├── vision.md                       # Create vision documents
-│   ├── brainstorm.md                   # Ideation (depends: vision)
-│   ├── prd.md                          # PRD creation (depends: vision)
-│   ├── user-stories.md                 # Story breakdown (depends: prd)
-│   ├── backlog.md                      # Prioritization (depends: stories)
-│   ├── project-kickoff.md              # Routes to correct department
+│   ├── product-development-flow/SKILL.md # Meta-skill: orchestrates full flow
+│   ├── vision/SKILL.md                 # Create vision documents
+│   ├── brainstorm/SKILL.md             # Ideation (depends: vision)
+│   ├── prd/SKILL.md                    # PRD creation (depends: vision)
+│   ├── user-stories/SKILL.md           # Story breakdown (depends: prd)
+│   ├── backlog/SKILL.md                # Prioritization (depends: stories)
+│   ├── project-kickoff/SKILL.md        # Routes to correct department
 │   │
 │   │── # ═══════════════════════════════════════════════════════════════════
 │   │── # ENGINEERING SKILLS
 │   │── # ═══════════════════════════════════════════════════════════════════
-│   ├── code-review.md                  # Review standards
+│   ├── code-review/SKILL.md            # Review standards
 │   │
 │   │── # ═══════════════════════════════════════════════════════════════════
 │   │── # UTILITY SKILLS (Tooling, sorted together with utility- prefix)
 │   │── # ═══════════════════════════════════════════════════════════════════
-│   ├── utility-git-commit.md           # Conventional commits
-│   ├── utility-file-reader.md          # Context-safe file reading
+│   ├── utility-git-commit/SKILL.md     # Conventional commits
+│   ├── utility-file-reader/SKILL.md    # Context-safe file reading
 │   │
 │   │── # ═══════════════════════════════════════════════════════════════════
 │   │── # COMMUNICATION SKILLS
 │   │── # ═══════════════════════════════════════════════════════════════════
-│   └── communication.md                # Abstracts Linear/Asana/Jira
+│   └── communication/SKILL.md          # Abstracts Linear/Asana/Jira
 │
 ├── books/                              # Company Library (by domain)
 │   ├── index.md                        # Master book index
@@ -152,7 +150,7 @@ vision-to-product/
 │       │   └── {date}_{session}_{topic}.md
 │       ├── agent-memory/               # Per-agent working memory
 │       │   ├── role-prod-manager.md
-│       │   └── role-eng-architect.md
+│       │   └── role-eng-director.md
 │       ├── session-recaps/             # Session handoffs
 │       │   └── {date}_recap.md
 │       ├── tasks/
@@ -181,17 +179,19 @@ vision-to-product/
 | Board | `board-{style}.md` | `board-chairman.md`, `board-conservative.md` |
 | Consultants | `consultant-{name}.md` | `consultant-ryan-singer.md` |
 | Company Roles | `role-{dept}-{role}.md` | `role-prod-manager.md` |
-| Company Roles (leveled) | `role-{dept}-{role}-{level}.md` | `role-eng-developer-sr.md` |
+| Exec Roles | `role-exec-{role}.md` | `role-exec-cpo.md`, `role-exec-cto.md` |
 | Hub Agents | `hub-{purpose}.md` | `hub-consultancy.md` |
 
-### Skills
+### Skills (Directory-Based)
+
+Skills use a directory structure with `SKILL.md` inside:
 
 | Category | Pattern | Examples |
 |----------|---------|----------|
-| Core | `{name}.md` | `thinking.md`, `memory.md` |
-| Product Flow | `{stage}.md` | `vision.md`, `prd.md` |
-| Engineering | `{name}.md` | `code-review.md` |
-| Utility/Tooling | `utility-{name}.md` | `utility-git-commit.md`, `utility-file-reader.md` |
+| Core | `{name}/SKILL.md` | `thinking/SKILL.md`, `memory/SKILL.md` |
+| Product Flow | `{stage}/SKILL.md` | `vision/SKILL.md`, `prd/SKILL.md` |
+| Engineering | `{name}/SKILL.md` | `code-review/SKILL.md` |
+| Utility/Tooling | `utility-{name}/SKILL.md` | `utility-git-commit/SKILL.md` |
 
 ### Department Codes
 
@@ -199,21 +199,17 @@ vision-to-product/
 |------------|------|---------------|
 | Executive | `exec` | `role-exec-ceo.md` |
 | Product | `prod` | `role-prod-manager.md` |
-| Engineering | `eng` | `role-eng-architect.md` |
+| Engineering | `eng` | `role-eng-engineer.md` |
 | Marketing | `mkt` | `role-mkt-director.md` |
 | Finance | `fin` | `role-fin-controller.md` |
 | Legal | `legal` | `role-legal-counsel.md` |
 | Operations | `ops` | `role-ops-chief.md` |
 | AI Resources | `ar` | `role-ar-director.md` |
 
-### Level Suffixes (Optional)
+### Notes
 
-| Level | Suffix | Example |
-|-------|--------|---------|
-| Senior | `-sr` | `role-eng-developer-sr.md` |
-| Lead | `-lead` | `role-eng-developer-lead.md` |
-| Director | `-dir` | N/A (use `director` in role name) |
-| VP | `-vp` | `role-prod-vp.md` |
+- Engineering roles consolidated to Director (strategic+management) and Engineer (staff IC)
+- Product strategy elevated to executive level (CPO)
 
 ## Portability
 

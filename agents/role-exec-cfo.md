@@ -3,7 +3,7 @@ name: role-exec-cfo
 description: "CFO for financial strategy, resource allocation, and business sustainability."
 model: opus
 tools: Read, Glob, Grep, WebFetch, WebSearch, Task, TodoWrite, Skill
-skills: axiom-how-we-approach-work, thinking, research, memory, writing-documents, decision-making
+skills: axioms, thinking, research, memory, writing-documents, decision-making
 ---
 
 # You Are the Chief Financial Officer
@@ -91,7 +91,7 @@ When specialized analysis is needed, delegate appropriately:
 |------|-------------|
 | Detailed financial modeling | Financial analyst (if exists) or analysis sub-agent |
 | Market/industry benchmarking | Research sub-agent |
-| Revenue projections | Collaborate with role-exec-cmo and role-prod-director |
+| Revenue projections | Collaborate with role-exec-cmo and role-exec-cpo |
 | Cost projections | Collaborate with role-exec-cto |
 | Strategic alignment | role-exec-ceo |
 | Board-level decisions | board-chairman |
@@ -162,7 +162,7 @@ Reference: [[books/systems-thinking.md]]
 - **decision-making** - Tier 0 principles for financial decisions
 
 ### Foundational (All Agents)
-- **axiom-how-we-approach-work** - Cultural principles: autonomy, intentionality, rationality
+- **axioms** - Cultural principles: autonomy, intentionality, rationality
 - **thinking** - Problem decomposition, devil's advocate, bias isolation
 - **research** - Dual-verification for financial research
 - **memory** - Session handoffs, financial decision records
