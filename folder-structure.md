@@ -1,4 +1,4 @@
-# Vision-to-Product: Folder Structure
+# AI Company OS: Folder Structure
 
 ## Complete Directory Tree
 
@@ -104,15 +104,30 @@ vision-to-product/
 │   ├── project-kickoff/SKILL.md        # Routes to correct department
 │   │
 │   │── # ═══════════════════════════════════════════════════════════════════
-│   │── # ENGINEERING SKILLS
+│   │── # ENGINEERING SKILLS (eng-* prefix for language/framework-specific)
 │   │── # ═══════════════════════════════════════════════════════════════════
-│   ├── code-review/SKILL.md            # Review standards
+│   ├── code-review/SKILL.md            # Comprehensive code review
+│   ├── eng-rspec-rails/SKILL.md        # RSpec testing patterns for Rails
+│   ├── eng-tdd-bug-fix/SKILL.md        # TDD workflow for bug fixes
 │   │
 │   │── # ═══════════════════════════════════════════════════════════════════
-│   │── # UTILITY SKILLS (Tooling, sorted together with utility- prefix)
+│   │── # WORKFLOW SKILLS (Cross-functional)
 │   │── # ═══════════════════════════════════════════════════════════════════
-│   ├── utility-git-commit/SKILL.md     # Conventional commits
+│   ├── git-commit/SKILL.md             # Prose-focused commit messages
+│   ├── write-task/SKILL.md             # Task writing for PM tools
+│   ├── working-off-of-todo-files/SKILL.md  # Todo file management
+│   ├── review-recommendations/SKILL.md # Challenge recommendations before presenting
+│   │
+│   │── # ═══════════════════════════════════════════════════════════════════
+│   │── # UTILITY SKILLS (Simple tooling, utility-* prefix)
+│   │── # ═══════════════════════════════════════════════════════════════════
+│   ├── utility-clipboard/SKILL.md      # Copy to clipboard
 │   ├── utility-file-reader/SKILL.md    # Context-safe file reading
+│   │
+│   │── # ═══════════════════════════════════════════════════════════════════
+│   │── # AGENT/TOOL SKILLS (External tool documentation, agent-* prefix)
+│   │── # ═══════════════════════════════════════════════════════════════════
+│   ├── agent-browser/SKILL.md          # Browser automation tool
 │   │
 │   │── # ═══════════════════════════════════════════════════════════════════
 │   │── # COMMUNICATION SKILLS
@@ -190,8 +205,10 @@ Skills use a directory structure with `SKILL.md` inside:
 |----------|---------|----------|
 | Core | `{name}/SKILL.md` | `thinking/SKILL.md`, `memory/SKILL.md` |
 | Product Flow | `{stage}/SKILL.md` | `vision/SKILL.md`, `prd/SKILL.md` |
-| Engineering | `{name}/SKILL.md` | `code-review/SKILL.md` |
-| Utility/Tooling | `utility-{name}/SKILL.md` | `utility-git-commit/SKILL.md` |
+| Engineering (language/framework) | `eng-{name}/SKILL.md` | `eng-rspec-rails/SKILL.md`, `eng-tdd-bug-fix/SKILL.md` |
+| Workflow (cross-functional) | `{name}/SKILL.md` | `code-review/SKILL.md`, `git-commit/SKILL.md`, `write-task/SKILL.md` |
+| Utility/Tooling | `utility-{name}/SKILL.md` | `utility-clipboard/SKILL.md`, `utility-file-reader/SKILL.md` |
+| Agent/Tool | `agent-{name}/SKILL.md` | `agent-browser/SKILL.md` |
 
 ### Department Codes
 

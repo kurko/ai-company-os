@@ -1,10 +1,10 @@
 # CLAUDE.md
 
-Project instructions for the Vision-to-Product multi-agent AI organization.
+Project instructions for AI Company OS - a multi-agent AI organization.
 
 ## Repository Purpose
 
-A multi-agent AI company simulation that takes ideas from vision to shipped product. The system uses:
+AI Company OS is a multi-agent AI company simulation that takes ideas from vision to shipped product. The system uses:
 - **Agents** - Isolated execution contexts (company roles, consultants, board members)
 - **Skills** - Knowledge injection (workflows, methodologies, best practices)
 - **Books** - Neural triggers that activate relevant knowledge
@@ -74,6 +74,21 @@ When building out the organization:
 ## Conventions
 
 - Agent files: `agents/{category}-{name}.md`
-- Skill files: `skills/{name}.md`
+- Skill files: `skills/{name}/SKILL.md`
 - Book triggers: `books/{domain}.md`
 - Decisions: `company/decisions/YYYY-MM-DD_{topic}.md`
+
+### Skill Prefix Conventions
+
+| Prefix | Purpose | Examples |
+|--------|---------|----------|
+| `eng-*` | Engineering-specific skills (language/framework, practices) | `eng-rspec-rails`, `eng-tdd-bug-fix` |
+| `utility-*` | Simple tooling skills | `utility-clipboard`, `utility-file-reader` |
+| `agent-*` | Tool-based automation skills | `agent-browser` |
+| No prefix | Cross-functional or domain-agnostic skills | `code-review`, `git-commit`, `write-task` |
+
+**Guidelines:**
+- Use `eng-*` for language-specific (Ruby, Python, etc.) or framework-specific (Rails, React) skills
+- Use `utility-*` for simple, single-purpose tooling
+- Use `agent-*` for skills that document external tools/automation
+- Keep cross-functional skills (review, commit, task management) unprefixed for discoverability

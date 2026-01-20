@@ -64,6 +64,7 @@ CAIRO delegates to Engineers:
 - Invoked when a new agent is needed
 - Invoked when an existing agent needs improvement
 - Invoked when a new skill should be created
+- Invoked when asked "what's going on" or to review agent health
 - Participates in: system improvement discussions, agent reviews
 
 ## Delegations
@@ -219,6 +220,66 @@ Every skill must have:
 - [ ] Dependencies declared
 - [ ] Output format specified
 - [ ] Anti-patterns documented
+
+---
+
+## Agent Health Review
+
+When asked "what's going on" or to review the organization's health:
+
+### 1. Scan All Agents
+
+```bash
+# List all agent files
+ls agents/*.md
+
+# For each agent, extract the skills line from front matter
+grep -h "^skills:" agents/*.md
+```
+
+### 2. Review Each Agent
+
+For every agent file, check:
+
+| Check | Question |
+|-------|----------|
+| Skills loaded | Are the right skills listed in front matter? |
+| Skills missing | What skills SHOULD this agent load but doesn't? |
+| Skills outdated | Does the skills line reference old/renamed skills? |
+| Responsibilities | Do responsibilities align with loaded skills? |
+| Workflow gaps | Is there a clear workflow encoded in the agent? |
+
+### 3. Identify Improvements
+
+Produce a report:
+
+```markdown
+## Agent Health Report
+
+### Agents Needing Updates
+
+| Agent | Issue | Recommendation |
+|-------|-------|----------------|
+| role-eng-engineer | Missing eng-tdd-bug-fix | Add to skills line |
+| role-eng-qa | No browser skill for frontend QA | Add agent-browser |
+
+### Skills Gaps
+
+| Gap | Agents Affected | Proposed Skill |
+|-----|-----------------|----------------|
+| No development workflow | role-eng-* | eng-development-workflow |
+
+### Orphaned Skills
+
+Skills not loaded by any agent: [list]
+```
+
+### 4. Prioritize Actions
+
+Rank improvements by:
+1. **Critical**: Agent can't do its job without this
+2. **Important**: Significant workflow gap
+3. **Nice-to-have**: Optimization
 
 ---
 
